@@ -13,7 +13,9 @@ data class ReadEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
 
-    val readData: String
+    val readData: String,
+
+    val dataType: Int
 )
 
 @Entity
@@ -23,6 +25,8 @@ class WriteEntity(
     val id: Long = 0L,
 
     val readData: String,
+
+    val dataType: Int,
 
     val registerName: String,
 

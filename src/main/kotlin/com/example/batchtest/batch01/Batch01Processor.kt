@@ -17,7 +17,7 @@ class Batch01Processor(
     fun processor(): ItemProcessor<ReadEntity, WriteEntity> {
         return ItemProcessor<ReadEntity, WriteEntity> {
             logger.info("Convert ReadEntity to WriteEntity")
-            WriteEntity(readData = it.readData, registerName = "Batch01")
+            WriteEntity(readData = it.readData, registerName = "Batch01", dataType = it.dataType)
         }
     }
 }

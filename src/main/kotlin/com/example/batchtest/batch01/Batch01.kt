@@ -5,7 +5,6 @@ import org.springframework.batch.core.job.builder.JobBuilder
 import org.springframework.batch.core.repository.JobRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.transaction.PlatformTransactionManager
 
 @Configuration
 class Batch01(
@@ -16,8 +15,10 @@ class Batch01(
     @Bean
     fun batch1Job(): Job {
         return JobBuilder("batch1job", jobRepository)
-            .start(batch01Step.flushTableBatch01(null))
+            .start(batch01Step.batch01FlushStep1(null))
             .next(batch01Step.batch1Step1(null))
+            .next(batch01Step.batch01FlushStep2(null))
+            .next(batch01Step.batch1Step2(null))
             .build()
     }
 }
