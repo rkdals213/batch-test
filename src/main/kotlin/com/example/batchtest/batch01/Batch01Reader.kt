@@ -24,7 +24,7 @@ class Batch01Reader(
             .name("batch01 flush table 1")
             .entityManagerFactory(entityManagerFactory)
 //            .pageSize(chunkSize1)
-            .queryString("select W from WriteEntity W where W.registerName = 'batch01' and W.dataType = 1 order by W.id")
+            .queryString("select W from WriteEntity W where W.registerName = 'batch01' and W.dataType = 1")
             .build()
     }
 
@@ -35,7 +35,7 @@ class Batch01Reader(
             .name("batch01 jpa paging item reader 1")
             .entityManagerFactory(entityManagerFactory)
             .pageSize(chunkSize1)
-            .queryString("select R from ReadEntity R where R.dataType = 1 order by R.id")
+            .queryString("select R from ReadEntity R where R.dataType = 1")
             .build()
     }
 
@@ -46,7 +46,7 @@ class Batch01Reader(
             .name("batch01 flush table 2")
             .entityManagerFactory(entityManagerFactory)
 //            .pageSize(chunkSize2)
-            .queryString("select W from WriteEntity W where W.registerName = 'batch01' and W.dataType = 2 order by W.id")
+            .queryString("select W from WriteEntity W where W.registerName = 'batch01' and W.dataType = 2")
             .build()
     }
 
@@ -57,7 +57,7 @@ class Batch01Reader(
             .name("batch01 jpa paging item reader 2")
             .entityManagerFactory(entityManagerFactory)
             .pageSize(chunkSize2)
-            .queryString("select R from ReadEntity R where R.dataType = 2 order by R.id")
+            .queryString("select R from ReadEntity R where R.dataType = 2")
             .build()
     }
 }
