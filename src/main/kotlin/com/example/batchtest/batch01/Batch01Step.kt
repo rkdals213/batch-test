@@ -25,11 +25,10 @@ class Batch01Step(
     @Bean
     @JobScope
     fun batch01FlushStep1(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
-        println("############################ batch01FlushStep1 Start")
-        println("############################ $requestDate")
-
         return StepBuilder("batch01FlushStep1", jobRepository)
             .chunk<WriteEntity, WriteEntity>(chunkSize1, transactionManager)
+            .listener(CustomStepExecutionListener())
+            .listener(CustomChunkListener())
             .reader(batch01Reader.flushTableBatch01Reader1())
             .writer(batch01Writer.flushTableBatch01Writer())
             .build()
@@ -38,11 +37,10 @@ class Batch01Step(
     @Bean
     @JobScope
     fun batch1Step1(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
-        println("############################ batch1Step1 Start")
-        println("############################ $requestDate")
-
         return StepBuilder("batch1Step1", jobRepository)
             .chunk<ReadEntity, WriteEntity>(chunkSize1, transactionManager)
+            .listener(CustomStepExecutionListener())
+            .listener(CustomChunkListener())
             .reader(batch01Reader.jpaPagingItemReaderType1())
             .processor(batch01Processor.processor())
             .writer(batch01Writer.jpaPagingItemWriter())
@@ -52,11 +50,10 @@ class Batch01Step(
     @Bean
     @JobScope
     fun batch01FlushStep2(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
-        println("############################ batch01FlushStep2 Start")
-        println("############################ $requestDate")
-
         return StepBuilder("batch01FlushStep2", jobRepository)
             .chunk<WriteEntity, WriteEntity>(chunkSize2, transactionManager)
+            .listener(CustomStepExecutionListener())
+            .listener(CustomChunkListener())
             .reader(batch01Reader.flushTableBatch01Reader2())
             .writer(batch01Writer.flushTableBatch01Writer())
             .build()
@@ -65,11 +62,10 @@ class Batch01Step(
     @Bean
     @JobScope
     fun batch1Step2(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
-        println("############################ batch1Step2 Start")
-        println("############################ $requestDate")
-
         return StepBuilder("batch1Step2", jobRepository)
             .chunk<ReadEntity, WriteEntity>(chunkSize2, transactionManager)
+            .listener(CustomStepExecutionListener())
+            .listener(CustomChunkListener())
             .reader(batch01Reader.jpaPagingItemReaderType2())
             .processor(batch01Processor.processor())
             .writer(batch01Writer.jpaPagingItemWriter())

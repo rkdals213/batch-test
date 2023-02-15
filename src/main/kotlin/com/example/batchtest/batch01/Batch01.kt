@@ -15,6 +15,7 @@ class Batch01(
     @Bean
     fun batch1Job(): Job {
         return JobBuilder("batch1job", jobRepository)
+            .listener(CustomJobListener())
             .start(batch01Step.batch01FlushStep1(null))
             .next(batch01Step.batch1Step1(null))
             .next(batch01Step.batch01FlushStep2(null))
