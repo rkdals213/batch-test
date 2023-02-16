@@ -1,5 +1,6 @@
 package com.example.batchtest.batch01
 
+import com.example.batchtest.common.CustomJobListener
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.job.builder.JobBuilder
 import org.springframework.batch.core.repository.JobRepository
@@ -14,12 +15,9 @@ class Batch01(
 
     @Bean
     fun batch1Job(): Job {
-        return JobBuilder("batch1job", jobRepository)
+        return JobBuilder("batch1Job", jobRepository)
             .listener(CustomJobListener())
-            .start(batch01Step.batch01FlushStep1(null))
-            .next(batch01Step.batch1Step1(null))
-            .next(batch01Step.batch01FlushStep2(null))
-            .next(batch01Step.batch1Step2(null))
+            .start(batch01Step.batch01Step1(null))
             .build()
     }
 }

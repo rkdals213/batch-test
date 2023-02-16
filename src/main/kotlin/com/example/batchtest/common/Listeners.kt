@@ -1,4 +1,4 @@
-package com.example.batchtest.batch01
+package com.example.batchtest.common
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

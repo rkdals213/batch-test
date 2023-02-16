@@ -1,4 +1,4 @@
-package com.example.batchtest.batch02
+package com.example.batchtest.batch03
 
 import com.example.batchtest.common.CustomJobListener
 import org.springframework.batch.core.Job
@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class Batch02(
+class Batch03(
     private val jobRepository: JobRepository,
-    private val batch02Step: Batch02Step
+    private val batch03Step: Batch03Step
 ) {
     @Bean
-    fun batch2Job(): Job {
-        return JobBuilder("batch2Job", jobRepository)
+    fun batch3Job(): Job {
+        return JobBuilder("batch3Job", jobRepository)
             .listener(CustomJobListener())
-            .start(batch02Step.batch02Step1(null))
+            .start(batch03Step.batch03Step1(null))
             .build()
     }
 }

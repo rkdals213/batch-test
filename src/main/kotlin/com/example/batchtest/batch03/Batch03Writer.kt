@@ -1,4 +1,4 @@
-package com.example.batchtest.batch01
+package com.example.batchtest.batch03
 
 import com.example.batchtest.common.WriteEntity
 import com.example.batchtest.common.WriteRepository
@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class Batch01Writer(
+class Batch03Writer(
     private val writeRepository: WriteRepository
 ) {
 
     @Bean
     @StepScope
-    fun deleteData(): ItemWriter<WriteEntity> {
+    fun writeBatch03Data(): ItemWriter<WriteEntity> {
         return ItemWriter<WriteEntity> { list: Chunk<out WriteEntity> ->
-            writeRepository.deleteAllInBatch(list)
+            writeRepository.saveAll(list)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.batchtest.batch01
+package com.example.batchtest.batch03
 
 import com.example.batchtest.common.ReadEntity
 import com.example.batchtest.common.WriteEntity
@@ -9,15 +9,20 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class Batch01Processor(
-    private val logger: Logger = LoggerFactory.getLogger(Batch01Processor::class.java)
+class Batch03Processor(
+    private val logger: Logger = LoggerFactory.getLogger(Batch03Processor::class.java)
 ) {
 
     @Bean
-    fun processor(): ItemProcessor<ReadEntity, WriteEntity> {
+    fun batch03Processor1(): ItemProcessor<ReadEntity, WriteEntity> {
         return ItemProcessor<ReadEntity, WriteEntity> {
             logger.info("Convert ReadEntity to WriteEntity")
-            WriteEntity(readData = it.readData, registerName = "Batch01", dataType = it.dataType)
+
+//            if (it.readData == "data8") {
+//                throw RuntimeException("data8")
+//            }
+
+            WriteEntity(readData = it.readData, registerName = "Batch03", dataType = it.dataType)
         }
     }
 }
