@@ -1,4 +1,4 @@
-package com.example.batchtest.batch01
+package com.example.batchtest.batch04
 
 import com.example.batchtest.common.*
 import org.springframework.batch.core.Step
@@ -11,22 +11,22 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.PlatformTransactionManager
 
 @Configuration
-class Batch01Step(
+class Batch04Step(
     private val jobRepository: JobRepository,
     private val transactionManager: PlatformTransactionManager,
-    private val batch01Reader: Batch01Reader,
-    private val batch01Writer: Batch01Writer
+    private val batch04Reader: Batch04Reader,
+    private val batch04Writer: Batch04Writer
 ) {
 
     @Bean
     @JobScope
-    fun batch01Step1(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
-        return StepBuilder("batch01Step1", jobRepository)
+    fun batch04Step1(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
+        return StepBuilder("batch04Step1", jobRepository)
             .chunk<WriteEntity, WriteEntity>(chunkSize1, transactionManager)
             .listener(CustomStepExecutionListener())
             .listener(CustomChunkListener())
-            .reader(batch01Reader.readBatch01Data())
-            .writer(batch01Writer.deleteBatch01Data())
+            .reader(batch04Reader.readBatch04Data())
+            .writer(batch04Writer.deleteBatch04Data())
             .build()
     }
 }

@@ -17,6 +17,11 @@ class Batch02Processor(
     fun batch02Processor1(): ItemProcessor<ReadEntity, WriteEntity> {
         return ItemProcessor<ReadEntity, WriteEntity> {
             logger.info("Convert ReadEntity to WriteEntity")
+
+            if (it.readData == "data8") {
+                throw RuntimeException("data8")
+            }
+
             WriteEntity(readData = it.readData, registerName = "Batch02", dataType = it.dataType)
         }
     }
