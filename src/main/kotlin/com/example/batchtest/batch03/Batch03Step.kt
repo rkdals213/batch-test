@@ -1,12 +1,10 @@
 package com.example.batchtest.batch03
 
-import com.example.batchtest.batch01.*
 import com.example.batchtest.common.*
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.configuration.annotation.JobScope
 import org.springframework.batch.core.repository.JobRepository
 import org.springframework.batch.core.step.builder.StepBuilder
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.PlatformTransactionManager
@@ -22,7 +20,7 @@ class Batch03Step(
 
     @Bean
     @JobScope
-    fun batch03Step1(@Value("#{jobParameters[requestDate]}") requestDate: String?): Step {
+    fun batch03Step1(): Step {
         return StepBuilder("batch03Step1", jobRepository)
             .chunk<ReadEntity, WriteEntity>(chunkSize2, transactionManager)
             .listener(CustomStepExecutionListener())

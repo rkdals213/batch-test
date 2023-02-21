@@ -17,7 +17,7 @@ class Batch04(
     fun batch4Job(): Job {
         return JobBuilder("batch4Job", jobRepository)
             .listener(CustomJobListener())
-            .start(batch04Step.batch04Step1(null))
+            .start(batch04Step.batch04Step1())
             .build()
     }
 }
