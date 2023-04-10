@@ -19,9 +19,10 @@ class Batch05Reader(
     fun readBatch05Data(): SynchronizedItemStreamReader<ReadTableDto> {
         val jdbcCursorItemReader = JdbcCursorItemReaderBuilder<ReadTableDto>()
             .name("readBatch05Data")
-            .sql("select so_id, ctrt_id, cust_id, pym_acnt_id, order_tp, created_date_time from write_table")
+            .sql("select id, so_id, ctrt_id, cust_id, pym_acnt_id, order_tp, created_date_time from read_table")
             .rowMapper { rs, _ ->
                 ReadTableDto(
+                    rs.getLong("id"),
                     rs.getString("so_id"),
                     rs.getString("ctrt_id"),
                     rs.getString("cust_id"),

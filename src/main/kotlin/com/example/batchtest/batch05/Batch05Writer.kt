@@ -17,7 +17,7 @@ class Batch05Writer(
     fun deleteBatch05Data(): JdbcBatchItemWriter<ReadTableDto> {
         return JdbcBatchItemWriterBuilder<ReadTableDto>()
             .dataSource(dataSource)
-            .sql("insert into read_table (so_id, ctrt_id, cust_id, pym_acnt_id, order_tp, created_date_time) values (:soId, :ctrtId, :custId, :pymAcntId, :orderTp, :createdDateTime)")
+            .sql("insert into write_table (so_id, ctrt_id, cust_id, pym_acnt_id, order_tp, created_date_time) values (:soId, :ctrtId, :custId, :pymAcntId, :orderTp, :createdDateTime)")
             .beanMapped()
             .build()
     }

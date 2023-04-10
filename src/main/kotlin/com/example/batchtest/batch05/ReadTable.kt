@@ -49,6 +49,7 @@ data class IdGroup(
 ) : Serializable
 
 data class ReadTableDto(
+    var id: Long,
     var soId: String,
     var ctrtId: String,
     var custId: String,
@@ -57,7 +58,7 @@ data class ReadTableDto(
     var createdDateTime: LocalDateTime,
 ) {
 
-    constructor(soId: String, ctrtId: String, custId: String, pymAcntId: String, orderTp: String, createdDateTime: String) : this(
-        soId, ctrtId, custId, pymAcntId, orderTp, LocalDateTime.parse(createdDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+    constructor(id: Long, soId: String, ctrtId: String, custId: String, pymAcntId: String, orderTp: String, createdDateTime: String) : this(
+        id, soId, ctrtId, custId, pymAcntId, orderTp, LocalDateTime.parse(createdDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
     )
 }
